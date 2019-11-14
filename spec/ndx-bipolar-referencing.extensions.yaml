@@ -1,8 +1,16 @@
 groups:
-- neurodata_type_def: TetrodeSeries
-  neurodata_type_inc: ElectricalSeries
-  doc: An extension of ElectricalSeries to include the tetrode ID for each time series.
-  attributes:
-  - name: trode_id
-    dtype: int32
-    doc: The tetrode ID.
+- neurodata_type_def: EcephysExt
+  neurodata_type_inc: LabMetaData
+  name: extracellular_electrophysiology_extensions
+  doc: Group that holds proposed extracellular electrophysiology extensions.
+  groups:
+  - name: bipolar_reference_scheme
+    neurodata_type_inc: DynamicTable
+    doc: Table that holds information about the bilpolar referencing scheme used
+    datasets:
+    - name: positive_electrodes
+      neurodata_type_inc: DynamicTableRegion
+      doc: references the electrodes table
+    - name: negative_electrodes
+      neurodata_type_inc: DynamicTableRegion
+      doc: references the electrodes table

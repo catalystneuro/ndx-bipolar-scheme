@@ -17,31 +17,25 @@ def main():
         contact=list(map(str.strip, 'ben.dichter@gmail.com'.split(',')))
     )
 
-    # TODO: specify the neurodata_types that are used by the extension as well
-    # as in which namespace they are found
-    # this is similar to specifying the Python modules that need to be imported
-    # to use your new data types
-    ns_builder.include_type('ElectricalSeries', namespace='core')
+    for type_name in ('LabMetaData', 'DynamicTableRegion', 'DynamicTable'):
+        ns_builder.include_type(type_name, namespace='core')
 
-    # TODO: define your new data types
-    # see https://pynwb.readthedocs.io/en/latest/extensions.html#extending-nwb
-    # for more information
-    tetrode_series = NWBGroupSpec(
-        neurodata_type_def='TetrodeSeries',
-        neurodata_type_inc='ElectricalSeries',
-        doc=('An extension of ElectricalSeries to include the tetrode ID for '
-             'each time series.'),
-        attributes=[
-            NWBAttributeSpec(
-                name='trode_id',
-                doc='The tetrode ID.',
-                dtype='int32'
-            )
-        ],
-    )
+    ecephys_ext = NWBGroupSpec(name='extracellular_electrophysiology_extensions',
+                               neurodata_type_def='EcephysExt',
+                               neurodata_type_inc='LabMetaData',
+                               doc='Group that holds proposed extracellular electrophysiology extensions.')
+    bipolar_reference_scheme = ecephys_ext.add_group(name='bipolar_reference_scheme',
+                                                     neurodata_type_inc='DynamicTable',
+                                                     doc='Table that holds information about the bilpolar referencing '
+                                                         'scheme used')
+    bipolar_reference_scheme.add_dataset(name='positive_electrodes',
+                                         neurodata_type_inc='DynamicTableRegion',
+                                         doc='references the electrodes table')
+    bipolar_reference_scheme.add_dataset(name='negative_electrodes',
+                                         neurodata_type_inc='DynamicTableRegion',
+                                         doc='references the electrodes table')
 
-    # TODO: add all of your new data types to this list
-    new_data_types = [tetrode_series]
+    new_data_types = [ecephys_ext]
 
     # export the spec to yaml files in the spec folder
     output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'spec'))

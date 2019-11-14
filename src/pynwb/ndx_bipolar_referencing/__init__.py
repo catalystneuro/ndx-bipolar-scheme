@@ -1,5 +1,5 @@
 import os
-from pynwb import load_namespaces
+from pynwb import load_namespaces, get_class
 
 # Set path of the namespace.yaml file to the expected install location
 ndx_bipolar_referencing_specpath = os.path.join(
@@ -20,3 +20,5 @@ if not os.path.exists(ndx_bipolar_referencing_specpath):
 
 # Load the namespace
 load_namespaces(ndx_bipolar_referencing_specpath)
+
+EcephysExt = get_class('EcephysExt', 'ndx-bipolar-referencing')

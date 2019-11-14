@@ -8,6 +8,8 @@ namespaces:
   schema:
   - namespace: core
     neurodata_types:
-    - ElectricalSeries
+    - LabMetaData
+    - DynamicTableRegion
+    - DynamicTable
   - source: ndx-bipolar-referencing.extensions.yaml
   version: 0.1.0
