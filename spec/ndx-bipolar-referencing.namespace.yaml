@@ -1,0 +1,13 @@
+namespaces:
+- author:
+  - Ben Dichter
+  contact:
+  - ben.dichter@gmail.com
+  doc: An NWB:N extension for storing bipolar referencing schema
+  name: ndx-bipolar-referencing
+  schema:
+  - namespace: core
+    neurodata_types:
+    - ElectricalSeries
+  - source: ndx-bipolar-referencing.extensions.yaml
+  version: 0.1.0
