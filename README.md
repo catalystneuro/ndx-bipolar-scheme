@@ -2,7 +2,7 @@
 
 Structure for storing the bipolar schema of a recording in an NWB file.
 
-![schema schema](docs/media/bipolar_reference_schema_schema.png)
+![schema schema](https://github.com/ben-dichter-consulting/ndx-bipolar-referencing/blob/master/docs/media/bipolar_reference_schema_schema.png?raw=true)
 
 ## python installation
 ```bash
