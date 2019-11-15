@@ -4,6 +4,11 @@ Structure for storing the bipolar schema of a recording in an NWB file.
 
 ![schema schema](docs/media/bipolar_reference_schema_schema.png)
 
+## python installation
+```bash
+$ pip install ndx-bipolar-referencing
+```
+
 ## python usage
 
 ```python

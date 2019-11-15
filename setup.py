@@ -1,18 +1,26 @@
 # -*- coding: utf-8 -*-
 
 import os
+from os import path
 
 from setuptools import setup, find_packages
 from shutil import copy2
 
+here = path.abspath(path.dirname(__file__))
+
+with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+
 setup_args = {
     'name': 'ndx-bipolar-referencing',
-    'version': '0.1.0',
+    'version': '0.1.1',
     'description': 'An NWB:N extension for storing bipolar referencing schema',
     'author': 'Ben Dichter',
     'author_email': 'ben.dichter@gmail.com',
-    'url': '',
+    'url': 'https://github.com/ben-dichter-consulting/ndx-bipolar-referencing',
     'license': 'BSD 3-Clause',
+    'long_description': long_description,
+    'long_description_content_type': "text/markdown",
     'install_requires': [
         'pynwb>=1.1.2'
     ],
