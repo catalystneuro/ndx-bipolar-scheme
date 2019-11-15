@@ -13,7 +13,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup_args = {
     'name': 'ndx-bipolar-referencing',
-    'version': '0.1.1',
+    'version': '0.1.2',
     'description': 'An NWB:N extension for storing bipolar referencing schema',
     'author': 'Ben Dichter',
     'author_email': 'ben.dichter@gmail.com',
