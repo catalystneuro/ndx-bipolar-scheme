@@ -22,19 +22,19 @@ def test_ext():
         nwbfile.add_electrode(np.nan, np.nan, np.nan, np.nan, 'loc', 'filt',
                               electrode_group)
 
-    positive_electrodes = DynamicTableRegion('positive_electrodes',
-                                             np.arange(0, 20, 2),
-                                             'desc',
-                                             nwbfile.electrodes)
-    negative_electrodes = DynamicTableRegion('negative_electrodes',
-                                             np.arange(1, 20, 2),
-                                             'desc',
-                                             nwbfile.electrodes)
+    anode_electrodes = DynamicTableRegion('anode',
+                                          np.arange(0, 20, 2),
+                                          'desc',
+                                          nwbfile.electrodes)
+    cathode_electrodes = DynamicTableRegion('cathode',
+                                            np.arange(1, 20, 2),
+                                            'desc',
+                                            nwbfile.electrodes)
 
     bipolar_reference_scheme = DynamicTable(name='bipolar_reference_scheme',
                                             description='desc',
-                                            columns=[positive_electrodes,
-                                                     negative_electrodes])
+                                            columns=[anode_electrodes,
+                                                     cathode_electrodes])
 
     ecephys_ext = EcephysExt(bipolar_reference_scheme=bipolar_reference_scheme)
     nwbfile.add_lab_meta_data(ecephys_ext)
@@ -58,7 +58,7 @@ def test_ext():
 
     with NWBHDF5IO('test_nwb.nwb', 'r', load_namespaces=True) as io:
         nwbfile = io.read()
-        assert_array_equal(nwbfile.acquisition['test_ec_series'].electrodes.table['positive_electrodes'].data,
+        assert_array_equal(nwbfile.acquisition['test_ec_series'].electrodes.table['anode'].data,
                            np.arange(0, 20, 2))
 
     os.remove('test_nwb.nwb')

@@ -2,9 +2,7 @@
 
 import os.path
 
-from pynwb.spec import NWBNamespaceBuilder, export_spec, NWBGroupSpec, NWBAttributeSpec
-# TODO: import the following spec classes as needed
-# from pynwb.spec import NWBDatasetSpec, NWBLinkSpec, NWBDtypeSpec, NWBRefSpec
+from pynwb.spec import NWBNamespaceBuilder, export_spec, NWBGroupSpec
 
 
 def main():
@@ -28,10 +26,10 @@ def main():
                                                      neurodata_type_inc='DynamicTable',
                                                      doc='Table that holds information about the bilpolar referencing '
                                                          'scheme used')
-    bipolar_reference_scheme.add_dataset(name='positive_electrodes',
+    bipolar_reference_scheme.add_dataset(name='anode',
                                          neurodata_type_inc='DynamicTableRegion',
                                          doc='references the electrodes table')
-    bipolar_reference_scheme.add_dataset(name='negative_electrodes',
+    bipolar_reference_scheme.add_dataset(name='cathode',
                                          neurodata_type_inc='DynamicTableRegion',
                                          doc='references the electrodes table')
 

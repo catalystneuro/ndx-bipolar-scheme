@@ -8,9 +8,9 @@ groups:
     neurodata_type_inc: DynamicTable
     doc: Table that holds information about the bilpolar referencing scheme used
     datasets:
-    - name: positive_electrodes
+    - name: anode
       neurodata_type_inc: DynamicTableRegion
       doc: references the electrodes table
-    - name: negative_electrodes
+    - name: cathode
       neurodata_type_inc: DynamicTableRegion
       doc: references the electrodes table
