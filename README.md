@@ -55,4 +55,8 @@ nwbfile.add_acquisition(ec_series)
 
 with NWBHDF5IO('test_nwb.nwb', 'w') as io:
     io.write(nwbfile)
+
+with NWBHDF5IO('test_nwb.nwb', 'r', load_namespaces=True) as io:
+    nwbfile = io.read()
+    nwbfile.acquisition['test_ec_series'].electrodes.table['positive_electrodes'].data
 ```
