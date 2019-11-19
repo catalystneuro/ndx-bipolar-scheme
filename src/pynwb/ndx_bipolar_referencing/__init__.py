@@ -21,4 +21,4 @@ if not os.path.exists(ndx_bipolar_referencing_specpath):
 # Load the namespace
 load_namespaces(ndx_bipolar_referencing_specpath)
 
-EcephysExt = get_class('EcephysExt', 'ndx-bipolar-referencing')
+EcephysExt = get_class('EcephysExt', 'ndx-bipolar-scheme')
