@@ -1,4 +1,4 @@
-# ndx-bipolar-scheme Extension for NWB:N
+# ndx-bipolar-scheme Extension for NWB
 
 Structure for storing the bipolar schema of a recording in an NWB file.
 
