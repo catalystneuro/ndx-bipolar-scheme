@@ -5,7 +5,7 @@ from pynwb import load_namespaces, get_class
 ndx_bipolar_scheme_specpath = os.path.join(
     os.path.dirname(__file__),
     'spec',
-    'ndx-bipolar-scheme.namespace.yaml'
+    'ndx-bipolar-referencing.namespace.yaml'
 )
 
 # If the extension has not been installed yet but we are running directly from
@@ -15,10 +15,10 @@ if not os.path.exists(ndx_bipolar_scheme_specpath):
         os.path.dirname(__file__),
         '..', '..', '..',
         'spec',
-        'ndx-bipolar-scheme.namespace.yaml'
+        'ndx-bipolar-referencing.namespace.yaml'
     ))
 
 # Load the namespace
 load_namespaces(ndx_bipolar_scheme_specpath)
 
-EcephysExt = get_class('EcephysExt', 'ndx-bipolar-scheme')
+EcephysExt = get_class('EcephysExt', 'ndx-bipolar-referencing')
