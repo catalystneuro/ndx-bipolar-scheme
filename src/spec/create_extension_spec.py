@@ -22,18 +22,18 @@ def main():
                                neurodata_type_def='EcephysExt',
                                neurodata_type_inc='LabMetaData',
                                doc='Group that holds proposed extracellular electrophysiology extensions.')
-    bipolar_reference_scheme = ecephys_ext.add_group(name='bipolar_scheme',
+    bipolar_scheme = ecephys_ext.add_group(name='bipolar_scheme',
                                                      neurodata_type_inc='DynamicTable',
                                                      doc='Table that holds information about the bilpolar referencing '
                                                          'scheme used')
-    bipolar_reference_scheme.add_dataset(name='anodes',
+    bipolar_scheme.add_dataset(name='anodes',
                                          neurodata_type_inc='DynamicTableRegion',
                                          doc='references the electrodes table')
-    bipolar_reference_scheme.add_dataset(name='anodes_index',
+    bipolar_scheme.add_dataset(name='anodes_index',
                                          neurodata_type_inc='VectorIndex',
                                          doc='Index into anodes',
                                          quantity='?')
-    bipolar_reference_scheme.add_dataset(name='cathode',
+    bipolar_scheme.add_dataset(name='cathode',
                                          neurodata_type_inc='DynamicTableRegion',
                                          doc='references the electrodes table')
 
