@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=source
 set BUILDDIR=build
-set SPHINXPROJ=ndx-bipolar-referencing
+set SPHINXPROJ=ndx-bipolar-scheme
 
 if "%1" == "" goto help
 
