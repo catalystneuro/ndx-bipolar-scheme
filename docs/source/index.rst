@@ -1,4 +1,4 @@
-Specification for the ndx-bipolar-referencing extension
+Specification for the ndx-bipolar-scheme extension
 ==================================
 
 .. toctree::
