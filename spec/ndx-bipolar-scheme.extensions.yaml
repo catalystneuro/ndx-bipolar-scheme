@@ -4,7 +4,7 @@ groups:
   name: extracellular_electrophysiology_extensions
   doc: Group that holds proposed extracellular electrophysiology extensions.
   groups:
-  - name: bipolar_reference_scheme
+  - name: bipolar_scheme
     neurodata_type_inc: DynamicTable
     doc: Table that holds information about the bilpolar referencing scheme used
     datasets:
