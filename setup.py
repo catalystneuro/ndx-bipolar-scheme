@@ -12,12 +12,12 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup_args = {
-    'name': 'ndx-bipolar-referencing',
+    'name': 'ndx-bipolar-scheme',
     'version': '0.2.0',
     'description': 'An NWB:N extension for storing bipolar referencing schema',
     'author': 'Ben Dichter',
     'author_email': 'ben.dichter@gmail.com',
-    'url': 'https://github.com/ben-dichter-consulting/ndx-bipolar-referencing',
+    'url': 'https://github.com/ben-dichter-consulting/ndx-bipolar-scheme',
     'license': 'BSD 3-Clause',
     'long_description': long_description,
     'long_description_content_type': "text/markdown",
@@ -26,9 +26,9 @@ setup_args = {
     ],
     'packages': find_packages('src/pynwb'),
     'package_dir': {'': 'src/pynwb'},
-    'package_data': {'ndx_bipolar_referencing': [
-        'spec/ndx-bipolar-referencing.namespace.yaml',
-        'spec/ndx-bipolar-referencing.extensions.yaml',
+    'package_data': {'ndx_bipolar_scheme': [
+        'spec/ndx-bipolar-scheme.namespace.yaml',
+        'spec/ndx-bipolar-scheme.extensions.yaml',
     ]},
     'classifiers': [
         "Intended Audience :: Developers",
@@ -39,10 +39,10 @@ setup_args = {
 
 
 def _copy_spec_files(project_dir):
-    ns_path = os.path.join(project_dir, 'spec', 'ndx-bipolar-referencing.namespace.yaml')
-    ext_path = os.path.join(project_dir, 'spec', 'ndx-bipolar-referencing.extensions.yaml')
+    ns_path = os.path.join(project_dir, 'spec', 'ndx-bipolar-scheme.namespace.yaml')
+    ext_path = os.path.join(project_dir, 'spec', 'ndx-bipolar-scheme.extensions.yaml')
 
-    dst_dir = os.path.join(project_dir, 'src', 'pynwb', 'ndx_bipolar_referencing', 'spec')
+    dst_dir = os.path.join(project_dir, 'src', 'pynwb', 'ndx_bipolar_scheme', 'spec')
     if not os.path.exists(dst_dir):
         os.mkdir(dst_dir)
 
