@@ -51,7 +51,7 @@ def test_ext():
 
     ec_series = ElectricalSeries(name='test_ec_series',
                                  description='desc',
-                                 data=np.random.rand(100, 10),
+                                 data=np.random.rand(100, 3),
                                  rate=1000.,
                                  electrodes=bipolar_scheme_region)
 
