@@ -10,7 +10,6 @@ from numpy.testing import assert_array_equal
 
 
 def test_ext():
-
     nwbfile = NWBFile('description', 'id', datetime.now().astimezone())
 
     device = nwbfile.create_device('device_name')
@@ -32,9 +31,9 @@ def test_ext():
                                             nwbfile.electrodes)
 
     bipolar_scheme = DynamicTable(name='bipolar_scheme',
-                                            description='desc',
-                                            columns=[anode_electrodes,
-                                                     cathode_electrodes])
+                                  description='desc',
+                                  columns=[anode_electrodes,
+                                           cathode_electrodes])
 
     ecephys_ext = EcephysExt(bipolar_scheme=bipolar_scheme)
     nwbfile.add_lab_meta_data(ecephys_ext)
@@ -62,6 +61,3 @@ def test_ext():
                            np.arange(0, 20, 2))
 
     os.remove('test_nwb.nwb')
-
-
-
