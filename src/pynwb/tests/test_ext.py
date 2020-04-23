@@ -42,7 +42,7 @@ def test_ext():
         name='electrodes',
         data=np.arange(0, 10),
         description='desc',
-        table=nwbfile.lab_meta_data['extracellular_electrophysiology_extensions'].bipolar_scheme)
+        table=nwbfile.lab_meta_data['extracellular_ephys_extensions'].bipolar_scheme)
 
     ec_series = ElectricalSeries(name='test_ec_series',
                                  description='desc',

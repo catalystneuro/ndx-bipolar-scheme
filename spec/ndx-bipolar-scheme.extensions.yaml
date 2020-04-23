@@ -1,14 +1,14 @@
 groups:
 - neurodata_type_def: EcephysExt
   neurodata_type_inc: LabMetaData
-  name: extracellular_electrophysiology_extensions
+  name: extracellular_ephys_extensions
   doc: Group that holds proposed extracellular electrophysiology extensions.
   groups:
   - name: bipolar_scheme
     neurodata_type_inc: DynamicTable
-    doc: Table that holds information about the bilpolar referencing scheme used
+    doc: Table that holds information about the bilpolar scheme used
     datasets:
-    - name: anode
+    - name: anodes
       neurodata_type_inc: DynamicTableRegion
       doc: references the electrodes table
     - name: cathode

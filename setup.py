@@ -14,7 +14,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 setup_args = {
     'name': 'ndx-bipolar-scheme',
     'version': '0.2.0',
-    'description': 'An NWB:N extension for storing bipolar referencing schema',
+    'description': 'An NWB:N extension for storing bipolar schema',
     'author': 'Ben Dichter',
     'author_email': 'ben.dichter@gmail.com',
     'url': 'https://github.com/ben-dichter-consulting/ndx-bipolar-scheme',

@@ -8,7 +8,7 @@ from pynwb.spec import NWBNamespaceBuilder, export_spec, NWBGroupSpec
 def main():
     # these arguments were auto-generated from your cookiecutter inputs
     ns_builder = NWBNamespaceBuilder(
-        doc='An NWB:N extension for storing bipolar referencing schema',
+        doc='An NWB:N extension for storing bipolar schema',
         name='ndx-bipolar-scheme',
         version='0.1.0',
         author=list(map(str.strip, 'Ben Dichter'.split(','))),
@@ -24,15 +24,10 @@ def main():
                                doc='Group that holds proposed extracellular electrophysiology extensions.')
     bipolar_scheme = ecephys_ext.add_group(name='bipolar_scheme',
                                            neurodata_type_inc='DynamicTable',
-                                           doc='Table that holds information about the bilpolar referencing '
-                                               'scheme used')
+                                           doc='Table that holds information about the bipolar scheme used')
     bipolar_scheme.add_dataset(name='anodes',
                                neurodata_type_inc='DynamicTableRegion',
                                doc='references the electrodes table')
-    bipolar_scheme.add_dataset(name='anodes_index',
-                               neurodata_type_inc='VectorIndex',
-                               doc='Index into anodes',
-                               quantity='?')
     bipolar_scheme.add_dataset(name='cathode',
                                neurodata_type_inc='DynamicTableRegion',
                                doc='references the electrodes table')

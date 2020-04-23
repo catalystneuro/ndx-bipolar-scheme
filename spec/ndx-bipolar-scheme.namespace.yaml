@@ -3,7 +3,7 @@ namespaces:
   - Ben Dichter
   contact:
   - ben.dichter@gmail.com
-  doc: An NWB:N extension for storing bipolar referencing schema
+  doc: An NWB:N extension for storing bipolar schema
   name: ndx-bipolar-scheme
   schema:
   - namespace: core
