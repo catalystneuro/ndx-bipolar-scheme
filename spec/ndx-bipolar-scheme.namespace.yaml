@@ -3,13 +3,13 @@ namespaces:
   - Ben Dichter
   contact:
   - ben.dichter@gmail.com
-  doc: An NWB:N extension for storing bipolar referencing schema
-  name: ndx-bipolar-referencing
+  doc: An NWB:N extension for storing bipolar schema
+  name: ndx-bipolar-scheme
   schema:
   - namespace: core
     neurodata_types:
     - LabMetaData
     - DynamicTableRegion
     - DynamicTable
-  - source: ndx-bipolar-referencing.extensions.yaml
+  - source: ndx-bipolar-scheme.extensions.yaml
   version: 0.1.0

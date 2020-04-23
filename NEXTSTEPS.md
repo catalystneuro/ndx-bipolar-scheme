@@ -1,8 +1,8 @@
-# Next Steps for ndx-bipolar-referencing Extension for NWB:N
+# Next Steps for ndx-bipolar-scheme Extension for NWB:N
 
 ## Creating Your Extension
 
-1. In a terminal, change directory into the new ndx-bipolar-referencing directory.
+1. In a terminal, change directory into the new ndx-bipolar-scheme directory.
 
 2. Add any packages required by your extension to `requirements.txt` and `setup.py`.
 
@@ -14,8 +14,8 @@ and any other packages required by your extension.
     - If you want to create any custom classes for interacting with the extension,
       add them to the `src/pynwb`.
       - If present, the `src/pynwb` folder MUST contain the following:
-        - `ndx-bipolar-referencing` - Folder with the sources of the NWB extension
-        - `ndx-bipolar-referencing/__init__.py` - Python file that may be empty
+        - `ndx-bipolar-scheme` - Folder with the sources of the NWB extension
+        - `ndx-bipolar-scheme/__init__.py` - Python file that may be empty
         - `requirements.txt` - Text file listing the Python package requirements for the extension
         - `README.md` - Markdown file describing the NWB extension
       - If present, the `src/pynwb` folder MAY contain the following files/folders:
@@ -23,8 +23,8 @@ and any other packages required by your extension.
         - `jupyter-widgets` - Optional package with custom widgets for use with Jupyter
 
 5. Run `python src/spec/create_extension_spec.py` to generate the
-`spec/ndx-bipolar-referencing.namespace.yaml` and
-`spec/ndx-bipolar-referencing.extensions.yaml` files.
+`spec/ndx-bipolar-scheme.namespace.yaml` and
+`spec/ndx-bipolar-scheme.extensions.yaml` files.
 
 6. You may need to modify `setup.py` and re-run `python setup.py install` if you
 use any dependencies.
@@ -37,7 +37,7 @@ or install the latest release:
 `python -m pip install nwb-docutils`
     - If you cloned the latest version, run `python setup.py install` to install nwb-docutils locally.
 
-2. Start a git repository for your extension directory ndx-bipolar-referencing
+2. Start a git repository for your extension directory ndx-bipolar-scheme
  and push it to GitHub. You will need a GitHub account.
     - Follow these directions:
   https://help.github.com/en/articles/adding-an-existing-project-to-github-using-the-command-line
@@ -53,12 +53,12 @@ your extension.
 
 7. Add a license file. Permissive licenses should be used if possible. **A [BSD license](https://opensource.org/licenses/BSD-3-Clause) is recommended.**
 
-8. Make a release for the extension on GitHub with the version number specified. e.g. if version is 0.1.0, then this page should exist: https://github.com/bendichter/ndx-bipolar-referencing/releases/tag/0.1.0
+8. Make a release for the extension on GitHub with the version number specified. e.g. if version is 0.1.0, then this page should exist: https://github.com/bendichter/ndx-bipolar-scheme/releases/tag/0.1.0
 
 9. Publish your updated extension on PyPi.
     - Follow these directions: https://packaging.python.org/tutorials/packaging-projects/
     - You may need to modify `setup.py`
-    - If your extension version is 0.1.0, then this page should exist: https://pypi.org/project/ndx-bipolar-referencing/0.1.0
+    - If your extension version is 0.1.0, then this page should exist: https://pypi.org/project/ndx-bipolar-scheme/0.1.0
 
 10. Go to https://github.com/nwb-extensions/staged-extensions and fork the
 repository.
@@ -66,13 +66,13 @@ repository.
 10. Clone the fork onto your local filesystem.
 
 10. Copy the directory `staged-extensions/example` to a new directory
-`staged-extensions/ndx-bipolar-referencing`:
+`staged-extensions/ndx-bipolar-scheme`:
 
     ```bash
-cp -r staged-extensions/example staged-extensions/ndx-bipolar-referencing
+cp -r staged-extensions/example staged-extensions/ndx-bipolar-scheme
 ```
 
-11. Edit `staged-extensions/ndx-bipolar-referencing/ndx-meta.yaml`
+11. Edit `staged-extensions/ndx-bipolar-scheme/ndx-meta.yaml`
 with information on where to find your NWB extension.
     - The YAML file MUST contain a dict with the following keys:
       - name: extension namespace name
@@ -86,21 +86,21 @@ with information on where to find your NWB extension.
 
   You may copy and modify the following YAML that was auto-generated:
 ```yaml
-name: ndx-bipolar-referencing
+name: ndx-bipolar-scheme
 version: 0.1.0
-src: https://github.com/bendichter/ndx-bipolar-referencing
-pip: https://pypi.org/project/ndx-bipolar-referencing/
+src: https://github.com/bendichter/ndx-bipolar-scheme
+pip: https://pypi.org/project/ndx-bipolar-scheme/
 license: BSD 3-Clause
 maintainers:
   - bendichter
 ```
 
-12. Edit `staged-extensions/ndx-bipolar-referencing/README.md`
+12. Edit `staged-extensions/ndx-bipolar-scheme/README.md`
 to add information about your extension. You may copy it from
-`ndx-bipolar-referencing/README.md`.
+`ndx-bipolar-scheme/README.md`.
 
   ```bash
-cp ndx-bipolar-referencing/README.md staged-extensions/ndx-bipolar-referencing/README.md
+cp ndx-bipolar-scheme/README.md staged-extensions/ndx-bipolar-scheme/README.md
 ```
 
 13. Git commit and push your changes to GitHub.
@@ -110,17 +110,17 @@ Mac, and Linux. The technical team will review your extension shortly after
 and provide feedback and request changes, if any.
 
 15. When your pull request is merged, a new repository, called
-ndx-bipolar-referencing-feedstock will be created in the nwb-extensions
+ndx-bipolar-scheme-feedstock will be created in the nwb-extensions
 GitHub organization and you will be added as a maintainer for that repository.
 
 
 ## Updating Your Published Extension
 
-1. Update your ndx-bipolar-referencing GitHub repository.
+1. Update your ndx-bipolar-scheme GitHub repository.
 
 2. Publish your updated extension on PyPi.
 
-3. Fork the ndx-bipolar-referencing-feedstock repository on GitHub.
+3. Fork the ndx-bipolar-scheme-feedstock repository on GitHub.
 
 4. Open a pull request to test the changes automatically. The technical team
 will review your changes shortly after and provide feedback and request changes,

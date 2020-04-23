@@ -9,10 +9,10 @@ import os
 spec_input_spec_dir = '../spec'
 
 # Name of the YAML file with the specification of the Namespace to be documented
-spec_input_namespace_filename = 'ndx-bipolar-referencing.namespace.yaml'
+spec_input_namespace_filename = 'ndx-bipolar-scheme.namespace.yaml'
 
 # Name of the default namespace in the file
-spec_input_default_namespace = 'ndx-bipolar-referencing'
+spec_input_default_namespace = 'ndx-bipolar-scheme'
 
 
 # -- Options for customizing the locations of output files

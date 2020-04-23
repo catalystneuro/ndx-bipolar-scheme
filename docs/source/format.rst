@@ -1,8 +1,8 @@
 
-.. _ndx-bipolar-referencing:
+.. _ndx-bipolar-scheme:
 
 ***********************
-ndx-bipolar-referencing
+ndx-bipolar-scheme
 ***********************
 
 Version |release| |today|

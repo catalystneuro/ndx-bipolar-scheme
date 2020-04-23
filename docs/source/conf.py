@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# ndx-bipolar-referencing documentation build configuration file, created by
+# ndx-bipolar-scheme documentation build configuration file, created by
 # sphinx-quickstart on Thu Nov 14 13:46:04 2019.
 #
 # This file is execfile()d with the current directory set to its
@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'ndx-bipolar-referencing'
+project = 'ndx-bipolar-scheme'
 copyright = '2019, Ben Dichter'
 author = 'Ben Dichter'
 
@@ -114,7 +114,7 @@ html_sidebars = {
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'ndx-bipolar-referencingdoc'
+htmlhelp_basename = 'ndx-bipolar-schemedoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -141,7 +141,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'ndx-bipolar-referencing.tex', 'ndx-bipolar-referencing Documentation',
+    (master_doc, 'ndx-bipolar-scheme.tex', 'ndx-bipolar-scheme Documentation',
      'Ben Dichter', 'manual'),
 ]
 
@@ -151,7 +151,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'ndx-bipolar-referencing', 'ndx-bipolar-referencing Documentation',
+    (master_doc, 'ndx-bipolar-scheme', 'ndx-bipolar-scheme Documentation',
      [author], 1)
 ]
 
@@ -162,8 +162,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'ndx-bipolar-referencing', 'ndx-bipolar-referencing Documentation',
-     author, 'ndx-bipolar-referencing', 'One line description of project.',
+    (master_doc, 'ndx-bipolar-scheme', 'ndx-bipolar-scheme Documentation',
+     author, 'ndx-bipolar-scheme', 'One line description of project.',
      'Miscellaneous'),
 ]
 
