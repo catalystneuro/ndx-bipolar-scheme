@@ -4,6 +4,7 @@ from pynwb.file import DynamicTable, DynamicTableRegion
 from datetime import datetime
 from ndx_bipolar_scheme import EcephysExt
 from pynwb.ecephys import ElectricalSeries
+from hdmf.common.table import VectorIndex
 
 import numpy as np
 from numpy.testing import assert_array_equal
@@ -30,10 +31,14 @@ def test_ext():
                                             'desc',
                                             nwbfile.electrodes)
 
-    bipolar_scheme = DynamicTable(name='bipolar_scheme',
-                                  description='desc',
-                                  columns=[anode_electrodes,
-                                           cathode_electrodes])
+    anode_electrodes_vi = VectorIndex(name='anode_vector_index', data=np.array([0, 3, 8]), target=anode_electrodes)
+    cathode_electrodes_vi = VectorIndex(name='cathode_vector_index', data=np.array([0, 1, 3]),
+                                        target=cathode_electrodes)
+
+    bipolar_scheme = DynamicTable(name='bipolar_scheme', description='desc', id=np.arange(3))
+    bipolar_scheme.add_column(name='anode', description='desc', index=anode_electrodes_vi, table=nwbfile.electrodes)
+    bipolar_scheme.add_column(name='cathode', description='desc', index=cathode_electrodes_vi,
+                              table=nwbfile.electrodes)
 
     ecephys_ext = EcephysExt(bipolar_scheme=bipolar_scheme)
     nwbfile.add_lab_meta_data(ecephys_ext)
