@@ -45,7 +45,7 @@ def test_ext():
 
     bipolar_scheme_region = DynamicTableRegion(
         name='electrodes',
-        data=np.arange(0, 10),
+        data=np.arange(0, 3),
         description='desc',
         table=nwbfile.lab_meta_data['extracellular_ephys_extensions'].bipolar_scheme)
 
