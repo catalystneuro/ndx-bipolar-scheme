@@ -26,6 +26,7 @@ def main():
                                            neurodata_type_def='BipolarScheme',
                                            neurodata_type_inc='DynamicTable',
                                            doc='Table that holds information about the bipolar scheme used')
+    
     bipolar_scheme.add_dataset(name='anodes', neurodata_type_inc='DynamicTableRegion',
                                doc='references the electrodes table', attributes=[NWBAttributeSpec(
                                                             name='anode_vector_index',
