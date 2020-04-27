@@ -15,7 +15,7 @@ def main():
         contact=list(map(str.strip, 'ben.dichter@gmail.com'.split(',')))
     )
 
-    for type_name in ('LabMetaData', 'DynamicTableRegion', 'DynamicTable', 'VectorIndex'):
+    for type_name in ('LabMetaData', 'DynamicTableRegion', 'DynamicTable', 'VectorIndex', 'VectorData'):
         ns_builder.include_type(type_name, namespace='core')
 
     ecephys_ext = NWBGroupSpec(name='extracellular_ephys_extensions',
@@ -33,6 +33,74 @@ def main():
                                doc='references the electrodes table')
 
     new_data_types = [ecephys_ext]
+
+    # export the spec to yaml files in the spec folder
+    output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'spec'))
+    export_spec(ns_builder, new_data_types, output_dir)
+
+
+    BipolarSchemeTable = NWBGroupSpec(
+        doc='type for storing time-varying 3D point clouds',
+        neurodata_type_def='PointCloudTable',
+        neurodata_type_inc='DynamicTable',
+        name='BipolarSchemeTable'
+    )
+
+    BipolarSchemeTable.add_dataset(
+        name='timestamps',
+        neurodata_type_inc='VectorData',
+        doc='time of each frame in seconds',
+        dims=('num_frames',),
+        shape=(None,),
+        dtype='float')
+
+    BipolarSchemeTable.add_dataset(
+        name='point_cloud',
+        neurodata_type_inc='VectorData',
+        doc='datapoints locations over time',
+        dims=('time', '[x, y, z]'),
+        shape=(None, 3),
+        dtype='float',
+    )
+
+    BipolarSchemeTable.add_dataset(
+        name='point_cloud_index',
+        neurodata_type_inc='VectorIndex',
+        doc='datapoints indices',
+        dims=('index',),
+        shape=(None,),
+    )
+
+    BipolarSchemeTable.add_dataset(
+        name='color',
+        neurodata_type_inc='VectorData',
+        doc='datapoints color',
+        dims=('time', '[r, g, b]'),
+        shape=(None, 3),
+        dtype='float',
+        quantity='?'
+    )
+
+    BipolarSchemeTable.add_dataset(
+        name='color_index',
+        neurodata_type_inc='VectorIndex',
+        doc='datapoints colors indices',
+        dims=('index',),
+        shape=(None,),
+        quantity='?'
+    )
+
+    BipolarSchemeTable.add_attribute(
+        name='colnames',
+        dims=('num_columns',),
+        shape=(None,),
+        doc='The names of the columns in this table. This should be used to specify '
+            'an order to the columns.',
+        default_value=('point_cloud',),
+        dtype='text'
+    )
+
+    new_data_types = [BipolarSchemeTable]
 
     # export the spec to yaml files in the spec folder
     output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'spec'))
