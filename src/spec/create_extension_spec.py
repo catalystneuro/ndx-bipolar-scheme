@@ -2,12 +2,14 @@
 
 import os.path
 
-from pynwb.spec import NWBNamespaceBuilder, export_spec, NWBGroupSpec, NWBRefSpec, NWBAttributeSpec
+from hdmf.spec import NamespaceBuilder, GroupSpec
+from hdmf.spec.write import export_spec
 
 
 def main():
+
     # these arguments were auto-generated from your cookiecutter inputs
-    ns_builder = NWBNamespaceBuilder(
+    ns_builder = NamespaceBuilder(
         doc='An NWB:N extension for storing bipolar schema',
         name='ndx-bipolar-scheme',
         version='0.1.0',
@@ -16,30 +18,55 @@ def main():
     )
 
     for type_name in ('LabMetaData', 'DynamicTableRegion', 'DynamicTable', 'VectorIndex', 'VectorData'):
-        ns_builder.include_type(type_name, namespace='core')
+        ns_builder.include_type(type_name, namespace='hdmf-common')
 
-    ecephys_ext = NWBGroupSpec(name='extracellular_ephys_extensions',
-                               neurodata_type_def='EcephysExt',
-                               neurodata_type_inc='LabMetaData',
-                               doc='Group that holds proposed extracellular electrophysiology extensions.')
-    bipolar_scheme = ecephys_ext.add_group(name='bipolar_scheme',
-                                           neurodata_type_def='BipolarScheme',
-                                           neurodata_type_inc='DynamicTable',
-                                           doc='Table that holds information about the bipolar scheme used')
-    
-    bipolar_scheme.add_dataset(name='anodes', neurodata_type_inc='DynamicTableRegion',
-                               doc='references the electrodes table', attributes=[NWBAttributeSpec(
-                                                            name='anode_vector_index',
-                                                            doc='A vector index for the anode',
-                                                            dtype=NWBRefSpec('VectorIndex', 'region'),
-                                                            required=True)])
+    ecephys_ext = GroupSpec(
+        doc='Group that holds proposed extracellular electrophysiology extensions.',
+        data_type_def='EcephysExt',
+        data_type_inc='LabMetaData',
+        default_name='ecephys_ext'
+    )
 
-    bipolar_scheme.add_dataset(name='cathode', neurodata_type_inc='DynamicTableRegion',
-                               doc='references the electrodes table', attributes=[NWBAttributeSpec(
-                                                            name='cathode_vector_index',
-                                                            doc='A vector index for the cathode',
-                                                            dtype=NWBRefSpec('VectorIndex', 'region'),
-                                                            required=True)])
+    bipolar_scheme = ecephys_ext.add_group(
+        name='bipolar_scheme',
+        data_type_def='BipolarScheme',
+        data_type_inc='DynamicTable',
+        doc='Table that holds information about the bipolar scheme used'
+    )
+
+    bipolar_scheme.add_dataset(
+        name='anodes',
+        data_type_inc='DynamicTableRegion',
+        doc='references the electrodes table',
+        dims=('num_electrode_grp',),
+        shape=(None,),
+        dtype='int'
+    )
+
+    bipolar_scheme.add_dataset(
+        name='cathode',
+        data_type_inc='DynamicTableRegion',
+        doc='references the electrodes table',
+        dims=('num_electrode_grp',),
+        shape=(None,),
+        dtype='int'
+    )
+
+    bipolar_scheme.add_dataset(
+        name='anodes_vector_index',
+        data_type_inc='VectorIndex',
+        doc='Indices for the anode table',
+        dims=('index',),
+        shape=(None,)
+    )
+
+    bipolar_scheme.add_dataset(
+        name='cathodes_vector_index',
+        data_type_inc='VectorIndex',
+        doc='Indices for the cathode table',
+        dims=('index',),
+        shape=(None,)
+    )
 
     new_data_types = [ecephys_ext]
 
@@ -48,16 +75,16 @@ def main():
     export_spec(ns_builder, new_data_types, output_dir)
 
 
-    BipolarSchemeTable = NWBGroupSpec(
+    BipolarSchemeTable = GroupSpec(
         doc='type for storing time-varying 3D point clouds',
-        neurodata_type_def='PointCloudTable',
-        neurodata_type_inc='DynamicTable',
-        name='BipolarSchemeTable'
+        data_type_def='PointCloudTable',
+        data_type_inc='DynamicTable',
+        default_name='BipolarSchemeTable'
     )
 
     BipolarSchemeTable.add_dataset(
         name='timestamps',
-        neurodata_type_inc='VectorData',
+        data_type_inc='VectorData',
         doc='time of each frame in seconds',
         dims=('num_frames',),
         shape=(None,),
@@ -65,7 +92,7 @@ def main():
 
     BipolarSchemeTable.add_dataset(
         name='point_cloud',
-        neurodata_type_inc='VectorData',
+        data_type_inc='VectorData',
         doc='datapoints locations over time',
         dims=('time', '[x, y, z]'),
         shape=(None, 3),
@@ -74,7 +101,7 @@ def main():
 
     BipolarSchemeTable.add_dataset(
         name='point_cloud_index',
-        neurodata_type_inc='VectorIndex',
+        data_type_inc='VectorIndex',
         doc='datapoints indices',
         dims=('index',),
         shape=(None,),
@@ -82,7 +109,7 @@ def main():
 
     BipolarSchemeTable.add_dataset(
         name='color',
-        neurodata_type_inc='VectorData',
+        data_type_inc='VectorData',
         doc='datapoints color',
         dims=('time', '[r, g, b]'),
         shape=(None, 3),
@@ -92,7 +119,7 @@ def main():
 
     BipolarSchemeTable.add_dataset(
         name='color_index',
-        neurodata_type_inc='VectorIndex',
+        data_type_inc='VectorIndex',
         doc='datapoints colors indices',
         dims=('index',),
         shape=(None,),
