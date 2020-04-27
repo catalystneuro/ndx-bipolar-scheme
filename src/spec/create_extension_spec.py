@@ -2,7 +2,7 @@
 
 import os.path
 
-from pynwb.spec import NWBNamespaceBuilder, export_spec, NWBGroupSpec
+from pynwb.spec import NWBNamespaceBuilder, export_spec, NWBGroupSpec, NWBRefSpec, NWBAttributeSpec
 
 
 def main():
@@ -23,14 +23,22 @@ def main():
                                neurodata_type_inc='LabMetaData',
                                doc='Group that holds proposed extracellular electrophysiology extensions.')
     bipolar_scheme = ecephys_ext.add_group(name='bipolar_scheme',
+                                           neurodata_type_def='BipolarScheme',
                                            neurodata_type_inc='DynamicTable',
                                            doc='Table that holds information about the bipolar scheme used')
-    bipolar_scheme.add_dataset(name='anodes',
-                               neurodata_type_inc='DynamicTableRegion',
-                               doc='references the electrodes table')
-    bipolar_scheme.add_dataset(name='cathode',
-                               neurodata_type_inc='DynamicTableRegion',
-                               doc='references the electrodes table')
+    bipolar_scheme.add_dataset(name='anodes', neurodata_type_inc='DynamicTableRegion',
+                               doc='references the electrodes table', attributes=[NWBAttributeSpec(
+                                                            name='anode_vector_index',
+                                                            doc='A vector index for the anode',
+                                                            dtype=NWBRefSpec('VectorIndex', 'region'),
+                                                            required=True)])
+
+    bipolar_scheme.add_dataset(name='cathode', neurodata_type_inc='DynamicTableRegion',
+                               doc='references the electrodes table', attributes=[NWBAttributeSpec(
+                                                            name='cathode_vector_index',
+                                                            doc='A vector index for the cathode',
+                                                            dtype=NWBRefSpec('VectorIndex', 'region'),
+                                                            required=True)])
 
     new_data_types = [ecephys_ext]
 
