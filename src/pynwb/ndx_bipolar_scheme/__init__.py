@@ -1,5 +1,6 @@
 import os
-from pynwb import load_namespaces, get_class
+import pynwb
+from hdmf.common import load_namespaces
 
 # Set path of the namespace.yaml file to the expected install location
 ndx_bipolar_scheme_specpath = os.path.join(
@@ -21,4 +22,5 @@ if not os.path.exists(ndx_bipolar_scheme_specpath):
 # Load the namespace
 load_namespaces(ndx_bipolar_scheme_specpath)
 
-EcephysExt = get_class('EcephysExt', 'ndx-bipolar-scheme')
+EcephysExt = pynwb.get_class('EcephysExt', 'ndx-bipolar-scheme')
+from .bipolar_scheme import BipolarSchemeTable
