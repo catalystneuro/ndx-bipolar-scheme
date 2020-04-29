@@ -22,4 +22,3 @@ if not os.path.exists(ndx_bipolar_scheme_specpath):
 pynwb.load_namespaces(ndx_bipolar_scheme_specpath)
 
 EcephysExt = pynwb.get_class('EcephysExt', 'ndx-bipolar-scheme')
-BipolarSchemeTable = pynwb.get_class('BipolarSchemeTable', 'ndx-bipolar-scheme')
