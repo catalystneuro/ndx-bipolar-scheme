@@ -17,8 +17,10 @@ def main():
         contact=list(map(str.strip, 'ben.dichter@gmail.com'.split(',')))
     )
 
-    for type_name in ('LabMetaData', 'DynamicTableRegion', 'DynamicTable', 'VectorIndex', 'VectorData'):
+    for type_name in ('DynamicTableRegion', 'DynamicTable', 'VectorIndex', 'VectorData'):
         ns_builder.include_type(type_name, namespace='hdmf-common')
+        
+    ns_builder.include_type('LabMetaData', namespace='core')
 
     ecephys_ext = GroupSpec(
         doc='Group that holds proposed extracellular electrophysiology extensions.',
@@ -38,7 +40,7 @@ def main():
         name='anodes',
         data_type_inc='DynamicTableRegion',
         doc='references the electrodes table',
-        dims=('num_electrode_grp',),
+        dims=('num_electrodes',),
         shape=(None,),
         dtype='int'
     )
@@ -47,7 +49,7 @@ def main():
         name='cathode',
         data_type_inc='DynamicTableRegion',
         doc='references the electrodes table',
-        dims=('num_electrode_grp',),
+        dims=('num_electrodes',),
         shape=(None,),
         dtype='int'
     )
@@ -56,7 +58,7 @@ def main():
         name='anodes_vector_index',
         data_type_inc='VectorIndex',
         doc='Indices for the anode table',
-        dims=('index',),
+        dims=('num_electrode_grp',),
         shape=(None,)
     )
 
@@ -64,7 +66,7 @@ def main():
         name='cathodes_vector_index',
         data_type_inc='VectorIndex',
         doc='Indices for the cathode table',
-        dims=('index',),
+        dims=('num_electrode_grp',),
         shape=(None,)
     )
 
