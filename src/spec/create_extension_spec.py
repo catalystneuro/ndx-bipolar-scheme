@@ -17,7 +17,7 @@ def main():
         contact=list(map(str.strip, 'ben.dichter@gmail.com'.split(',')))
     )
 
-    for type_name in ('DynamicTableRegion', 'DynamicTable', 'VectorIndex', 'VectorData'):
+    for type_name in ('DynamicTableRegion', 'DynamicTable', 'VectorIndex'):
         ns_builder.include_type(type_name, namespace='hdmf-common')
         
     ns_builder.include_type('LabMetaData', namespace='core')
