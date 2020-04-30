@@ -33,36 +33,29 @@ device = nwbfile.create_device('device_name')
 electrode_group = nwbfile.create_electrode_group('electrode_group',
                                                  'desc', 'loc', device=device)
 
-for _ in range(20):
-    nwbfile.add_electrode(np.nan, np.nan, np.nan, np.nan, 'loc', 'filt',
-                          electrode_group)
+for i in np.arange(20.):
+    nwbfile.add_electrode(i, i, i, np.nan, 'loc', 'filt', electrode_group)
 
-anode_electrodes = DynamicTableRegion('anode',
-                                      np.arange(0, 20, 2),
-                                      'desc',
-                                      nwbfile.electrodes)
-cathode_electrodes = DynamicTableRegion('cathode',
-                                        np.arange(1, 20, 2),
-                                        'desc',
-                                        nwbfile.electrodes)
+bipolar_scheme = DynamicTable(name='bipolar_scheme', description='desc')
+bipolar_scheme.add_column(name='anode', description='desc', index=True, table=nwbfile.electrodes)
+bipolar_scheme.add_column(name='cathode', description='desc', index=True, table=nwbfile.electrodes)
 
-bipolar_scheme = DynamicTable(name='bipolar_scheme',
-                                        description='desc',
-                                        columns=[anode_electrodes,
-                                                 cathode_electrodes])
+bipolar_scheme.add_row(anode=[0], cathode=[1])
+bipolar_scheme.add_row(anode=[0, 1], cathode=[2, 3])
+bipolar_scheme.add_row(anode=[0, 1], cathode=[2])
 
 ecephys_ext = EcephysExt(bipolar_scheme=bipolar_scheme)
 nwbfile.add_lab_meta_data(ecephys_ext)
 
 bipolar_scheme_region = DynamicTableRegion(
     name='electrodes',
-    data=np.arange(0, 10),
+    data=np.arange(0, 3),
     description='desc',
     table=nwbfile.lab_meta_data['extracellular_ephys_extensions'].bipolar_scheme)
 
 ec_series = ElectricalSeries(name='test_ec_series',
                              description='desc',
-                             data=np.random.rand(100, 10),
+                             data=np.random.rand(100, 3),
                              rate=1000.,
                              electrodes=bipolar_scheme_region)
 
@@ -73,5 +66,5 @@ with NWBHDF5IO('test_nwb.nwb', 'w') as io:
 
 with NWBHDF5IO('test_nwb.nwb', 'r', load_namespaces=True) as io:
     nwbfile = io.read()
-    print(nwbfile.acquisition['test_ec_series'].electrodes.table['anode'].data)
+    print(nwbfile.acquisition['test_ec_series'].electrodes.table['anode'][2]['x'])
 ```

@@ -17,7 +17,7 @@ setup_args = {
     'description': 'An NWB:N extension for storing bipolar schema',
     'author': 'Ben Dichter',
     'author_email': 'ben.dichter@gmail.com',
-    'url': 'https://github.com/ben-dichter-consulting/ndx-bipolar-scheme',
+    'url': 'https://github.com/catalystneuro/ndx-bipolar-scheme',
     'license': 'BSD 3-Clause',
     'long_description': long_description,
     'long_description_content_type': "text/markdown",
