@@ -21,12 +21,12 @@ def test_ext():
         nwbfile.add_electrode(i, i, i, np.nan, 'loc', 'filt', electrode_group)
 
     bipolar_scheme = DynamicTable(name='bipolar_scheme', description='desc')
-    bipolar_scheme.add_column(name='anode', description='desc', index=True, table=nwbfile.electrodes)
-    bipolar_scheme.add_column(name='cathode', description='desc', index=True, table=nwbfile.electrodes)
+    bipolar_scheme.add_column(name='anodes', description='desc', index=True, table=nwbfile.electrodes)
+    bipolar_scheme.add_column(name='cathodes', description='desc', index=True, table=nwbfile.electrodes)
 
-    bipolar_scheme.add_row(anode=[0], cathode=[1])
-    bipolar_scheme.add_row(anode=[0, 1], cathode=[2, 3])
-    bipolar_scheme.add_row(anode=[0, 1], cathode=[2])
+    bipolar_scheme.add_row(anodes=[0], cathodes=[1])
+    bipolar_scheme.add_row(anodes=[0, 1], cathodes=[2, 3])
+    bipolar_scheme.add_row(anodes=[0, 1], cathodes=[2])
 
     ecephys_ext = EcephysExt(bipolar_scheme=bipolar_scheme)
     nwbfile.add_lab_meta_data(ecephys_ext)
