@@ -3,8 +3,6 @@ from pynwb.file import LabMetaData
 from hdmf.utils import docval, call_docval_func, get_docval
 
 
-
-
 @register_class('EcephysExt', 'ndx-bipolar-scheme')
 class EcephysExt(LabMetaData):
     """
@@ -22,6 +20,3 @@ class EcephysExt(LabMetaData):
             *get_docval(LabMetaData.__init__))
     def __init__(self, **kwargs):
         call_docval_func(super(EcephysExt, self).__init__, kwargs)
-
-
-

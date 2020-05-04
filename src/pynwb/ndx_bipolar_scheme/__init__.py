@@ -1,9 +1,6 @@
 import os
 
-
-
-from pynwb import load_namespaces, get_class
-
+from pynwb import load_namespaces
 
 name = 'ndx-bipolar-scheme'
 

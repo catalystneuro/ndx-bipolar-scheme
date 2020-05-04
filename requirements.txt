@@ -1,2 +1,3 @@
+hdmf
 pynwb>=1.1.2
 nwb_docutils
