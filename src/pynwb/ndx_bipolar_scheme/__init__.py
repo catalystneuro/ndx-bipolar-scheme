@@ -24,4 +24,4 @@ if not os.path.exists(ndx_bipolar_scheme_specpath):
 # Load the namespace
 load_namespaces(ndx_bipolar_scheme_specpath)
 
-from .bipolar_scheme import EcephysExt
+from .bipolar_scheme import EcephysExt, BipolarSchemeTable
