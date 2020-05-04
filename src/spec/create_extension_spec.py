@@ -46,7 +46,7 @@ def main():
     )
 
     bipolar_scheme.add_dataset(
-        name='cathode',
+        name='cathodes',
         data_type_inc='DynamicTableRegion',
         doc='references the electrodes table',
         dims=('num_electrodes',),
