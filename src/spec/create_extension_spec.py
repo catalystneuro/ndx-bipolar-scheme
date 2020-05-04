@@ -27,11 +27,11 @@ def main():
         default_name='ecephys_ext'
     )
 
-    bipolar_scheme = ecephys_ext.add_group(
-        name='bipolar_scheme',
+    bipolar_scheme = NWBGroupSpec(
+        doc='Table that holds information about the bipolar scheme used',
         neurodata_type_def='BipolarSchemeTable',
         neurodata_type_inc='DynamicTable',
-        doc='Table that holds information about the bipolar scheme used'
+        default_name='bipolar_scheme'
     )
 
     bipolar_scheme.add_dataset(
@@ -68,11 +68,13 @@ def main():
         shape=(None,)
     )
 
-    new_data_types = [ecephys_ext]
+    new_data_types1 = [bipolar_scheme]
+    new_data_types2 = [ecephys_ext]
 
     # export the spec to yaml files in the spec folder
     output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'spec'))
-    export_spec(ns_builder, new_data_types, output_dir)
+    export_spec(ns_builder, new_data_types1, output_dir)
+    export_spec(ns_builder, new_data_types2, output_dir)
 
 
 if __name__ == "__main__":

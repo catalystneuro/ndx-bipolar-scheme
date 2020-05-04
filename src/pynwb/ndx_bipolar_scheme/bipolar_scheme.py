@@ -11,8 +11,6 @@ class EcephysExt(LabMetaData):
     __nwbfields__ = ('name',)
 
     @docval(dict(name='name', type=str, doc='name of this EcephysExt', default='EcephysExt'),  # required
-            dict(name='description', type=str, doc='Description of this DynamicTableRegion',
-                 default='references the electrodes table'),
             *get_docval(LabMetaData.__init__))
     def __init__(self, **kwargs):
         call_docval_func(super(EcephysExt, self).__init__, kwargs)
