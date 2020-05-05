@@ -20,11 +20,19 @@ def test_ext():
     for i in np.arange(20.):
         nwbfile.add_electrode(i, i, i, np.nan, 'loc', 'filt', electrode_group)
 
-    bipolar_scheme_table = BipolarSchemeTable()
+    bipolar_scheme_table = BipolarSchemeTable(name='bipolar_scheme_table',
+                                          description='desc')
+    anodes_row1 = DynamicTableRegion('anodes',[0],'desc',nwbfile.electrodes)
+    anodes_row2 = DynamicTableRegion('anodes',[0, 1],'desc',nwbfile.electrodes)
+    anodes_row3 = DynamicTableRegion('anodes',[0, 1],'desc',nwbfile.electrodes)
+    
+    cathodes_row1 = DynamicTableRegion('cathodes',[1],'desc',nwbfile.electrodes)
+    cathodes_row2 = DynamicTableRegion('cathodes',[2, 3],'desc',nwbfile.electrodes)
+    cathodes_row3 = DynamicTableRegion('cathodes',[2],'desc',nwbfile.electrodes)
 
-    bipolar_scheme_table.add_row(anodes=[0], cathodes=[1])
-    bipolar_scheme_table.add_row(anodes=[0, 1], cathodes=[2, 3])
-    bipolar_scheme_table.add_row(anodes=[0, 1], cathodes=[2])
+    bipolar_scheme_table.add_row(anodes=anodes_row1, cathodes=cathodes_row1)
+    bipolar_scheme_table.add_row(anodes=anodes_row2, cathodes=cathodes_row2)
+    bipolar_scheme_table.add_row(anodes=anodes_row3, cathodes=cathodes_row3)
 
     bipolar_scheme_region = DynamicTableRegion(
         name='electrodes',
