@@ -34,3 +34,5 @@ class BipolarSchemeTable(DynamicTable):
             *get_docval(DynamicTable.__init__, 'id', 'columns', 'colnames'))
     def __init__(self, **kwargs):
         call_docval_func(super(BipolarSchemeTable, self).__init__, kwargs)
+        self.anodes_vector_index = kwargs['anodes_vector_index']
+        self.cathodes_vector_index = kwargs['cathodes_vector_index']
