@@ -24,7 +24,7 @@ class BipolarSchemeTable(DynamicTable):
 
     __columns__ = (
         {'name': 'anodes', 'description': 'references the electrodes table', 'required': True, 'index': True},
-        {'name': 'cathodes', 'description': 'references the electrodes table', 'required': True, 'index': True},
+        {'name': 'cathodes', 'description': 'references the electrodes table', 'required': True, 'index': True}
     )
 
     @docval(dict(name='name', type=str, doc='name of this BipolarSchemeTable',
