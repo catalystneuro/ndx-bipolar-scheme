@@ -8,9 +8,9 @@ class EcephysExt(LabMetaData):
     """
     Meta data for bipolar scheme
     """
-    __nwbfields__ = ('name',)
+    __nwbfields__ = ('metadata',)
 
-    @docval(dict(name='name', type=str, doc='name of this EcephysExt', default='EcephysExt'),  # required
+    @docval(dict(name='metadata', type=str, doc='name of this EcephysExt', default='EcephysExt'),  # required
             *get_docval(LabMetaData.__init__))
     def __init__(self, **kwargs):
         call_docval_func(super(EcephysExt, self).__init__, kwargs)
