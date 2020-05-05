@@ -2,7 +2,7 @@ import os
 from pynwb import NWBHDF5IO, NWBFile
 from pynwb.file import DynamicTable, DynamicTableRegion
 from datetime import datetime
-from ndx_bipolar_scheme import BipolarSchemeTable
+from ndx_bipolar_scheme import BipolarSchemeTable, EcephysExt
 from pynwb.ecephys import ElectricalSeries
 
 import numpy as np
@@ -20,14 +20,28 @@ def test_ext():
     for i in np.arange(20.):
         nwbfile.add_electrode(i, i, i, np.nan, 'loc', 'filt', electrode_group)
 
-    bipolar_scheme = BipolarSchemeTable(name='bipolar_scheme', description='desc')
+    bipolar_scheme_table = BipolarSchemeTable()
 
-    bipolar_scheme.add_row(anodes=[0], cathodes=[1])
-    bipolar_scheme.add_row(anodes=[0, 1], cathodes=[2, 3])
-    bipolar_scheme.add_row(anodes=[0, 1], cathodes=[2])
+    bipolar_scheme_table.add_row(anodes=[0], cathodes=[1])
+    bipolar_scheme_table.add_row(anodes=[0, 1], cathodes=[2, 3])
+    bipolar_scheme_table.add_row(anodes=[0, 1], cathodes=[2])
 
-    bipolar_mod = nwbfile.create_processing_module('bipolar', 'desc')
-    nwbfile.processing['bipolar'].add(bipolar_scheme)
+    bipolar_scheme_region = DynamicTableRegion(
+        name='electrodes',
+        data=np.arange(0, 3),
+        description='desc',
+        table=bipolar_scheme_table)
+
+    ec_series = ElectricalSeries(name='test_ec_series',
+                                 description='desc',
+                                 data=np.random.rand(100, 3),
+                                 rate=1000.,
+                                 electrodes=bipolar_scheme_region)
+
+    nwbfile.add_acquisition(ec_series)
+
+    ecephys_ext = EcephysExt(name='ecephys_ext')
+    nwbfile.add_lab_meta_data(ecephys_ext)
 
 
     with NWBHDF5IO('test_nwb.nwb', 'w') as io:
