@@ -34,3 +34,7 @@ class BipolarSchemeTable(DynamicTable):
             *get_docval(DynamicTable.__init__, 'id', 'columns', 'colnames'))
     def __init__(self, **kwargs):
         call_docval_func(super(BipolarSchemeTable, self).__init__, kwargs)
+
+@register_map(BipolarSchemeTable)
+class BipolarSchemeTableMap(DynamicTableMap):
+    pass
