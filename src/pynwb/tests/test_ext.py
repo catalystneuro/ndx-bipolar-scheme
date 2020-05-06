@@ -1,6 +1,6 @@
 import os
 from pynwb import NWBHDF5IO, NWBFile
-from pynwb.file import DynamicTable, DynamicTableRegion
+from pynwb.file import DynamicTableRegion
 from datetime import datetime
 from ndx_bipolar_scheme import BipolarSchemeTable, EcephysExt
 from pynwb.ecephys import ElectricalSeries
@@ -21,12 +21,12 @@ def test_ext():
         nwbfile.add_electrode(i, i, i, np.nan, 'loc', 'filt', electrode_group)
 
     bipolar_scheme_table = BipolarSchemeTable(name='bipolar_scheme_table',
-                                          description='desc')
-    
+                                              description='desc')
+
     bipolar_scheme_table.add_row(anodes=[0], cathodes=[1])
     bipolar_scheme_table.add_row(anodes=[0, 1], cathodes=[2, 3])
     bipolar_scheme_table.add_row(anodes=[0, 1], cathodes=[2])
-    
+
     bipolar_scheme_table.anodes.table = nwbfile.electrodes
     bipolar_scheme_table.cathodes.table = nwbfile.electrodes
 

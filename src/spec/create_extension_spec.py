@@ -73,13 +73,11 @@ def main():
         shape=(None,)
     )
 
-    new_data_types1 = [ecephys_ext]
-    new_data_types2 = [bipolar_scheme]
+    new_data_types = [ecephys_ext, bipolar_scheme]
 
     # export the spec to yaml files in the spec folder
     output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'spec'))
-    export_spec(ns_builder, new_data_types1, output_dir)
-    export_spec(ns_builder, new_data_types2, output_dir)
+    export_spec(ns_builder, new_data_types, output_dir)
 
 
 if __name__ == "__main__":
