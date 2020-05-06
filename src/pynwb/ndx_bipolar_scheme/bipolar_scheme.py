@@ -8,12 +8,12 @@ class EcephysExt(LabMetaData):
     """
     Meta data for bipolar scheme
     """
-    __nwbfields__ = ('ecephys_ext',)
+    __nwbfields__ = ('name',
+                     {'name': 'bipolar_scheme_table', 'child': True})
 
-    @docval(dict(name='ecephys_ext', type=str, doc='name of this EcephysExt', default='EcephysExt'),  # required
-            *get_docval(LabMetaData.__init__))
+    @docval(dict(name='name', type=str, doc='name of this EcephysExt', default='EcephysExt'))  # required
     def __init__(self, **kwargs):
-        call_docval_func(super(EcephysExt, self).__init__, kwargs)
+        call_docval_func(super().__init__, kwargs)
 
 
 @register_class('BipolarSchemeTable', 'ndx-bipolar-scheme')

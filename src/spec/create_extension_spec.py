@@ -23,7 +23,13 @@ def main():
         doc='Group that holds proposed extracellular electrophysiology extensions.',
         neurodata_type_def='EcephysExt',
         neurodata_type_inc='LabMetaData',
-        default_name='ecephys_ext'
+        default_name='ecephys_ext',
+        groups=[NWBGroupSpec(
+            name='bipolar_scheme_table',
+            neurodata_type_inc='BipolarSchemeTable',
+            doc='Bipolar referencing scheme used',
+            quantity='?'
+        )]
     )
 
     bipolar_scheme = NWBGroupSpec(

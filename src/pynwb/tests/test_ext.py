@@ -45,14 +45,14 @@ def test_ext():
     nwbfile.add_acquisition(ec_series)
 
     ecephys_ext = EcephysExt(name='ecephys_ext')
+    ecephys_ext.bipolar_scheme_table = bipolar_scheme_table
     nwbfile.add_lab_meta_data(ecephys_ext)
-
 
     with NWBHDF5IO('test_nwb.nwb', 'w') as io:
         io.write(nwbfile)
 
     with NWBHDF5IO('test_nwb.nwb', 'r', load_namespaces=True) as io:
         nwbfile = io.read()
-        assert_array_equal(nwbfile.acquisition['test_ec_series'].electrodes.table['anode'][2]['x'], [0., 1.])
+        assert_array_equal(nwbfile.acquisition['test_ec_series'].electrodes.table['anodes'][2]['x'], [0., 1.])
 
     os.remove('test_nwb.nwb')
