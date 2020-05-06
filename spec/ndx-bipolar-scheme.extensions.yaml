@@ -24,14 +24,14 @@ groups:
     shape:
     - null
     doc: references the electrodes table
-  - name: anodes_vector_index
+  - name: anodes_index
     neurodata_type_inc: VectorIndex
     dims:
     - num_electrode_grp
     shape:
     - null
     doc: Indices for the anode table
-  - name: cathodes_vector_index
+  - name: cathodes_index
     neurodata_type_inc: VectorIndex
     dims:
     - num_electrode_grp

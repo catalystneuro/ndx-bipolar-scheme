@@ -52,7 +52,7 @@ def main():
     )
 
     bipolar_scheme.add_dataset(
-        name='anodes_vector_index',
+        name='anodes_index',
         neurodata_type_inc='VectorIndex',
         doc='Indices for the anode table',
         dims=('num_electrode_grp',),
@@ -60,7 +60,7 @@ def main():
     )
 
     bipolar_scheme.add_dataset(
-        name='cathodes_vector_index',
+        name='cathodes_index',
         neurodata_type_inc='VectorIndex',
         doc='Indices for the cathode table',
         dims=('num_electrode_grp',),
