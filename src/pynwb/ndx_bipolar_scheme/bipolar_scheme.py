@@ -1,6 +1,7 @@
 from pynwb import register_class, register_map
 from pynwb.file import LabMetaData, DynamicTable
 from hdmf.utils import docval, call_docval_func, get_docval
+from hdmf.common.io.table import DynamicTableMap
 
 
 @register_class('EcephysExt', 'ndx-bipolar-scheme')
@@ -34,6 +35,7 @@ class BipolarSchemeTable(DynamicTable):
             *get_docval(DynamicTable.__init__, 'id', 'columns', 'colnames'))
     def __init__(self, **kwargs):
         call_docval_func(super(BipolarSchemeTable, self).__init__, kwargs)
+
 
 @register_map(BipolarSchemeTable)
 class BipolarSchemeTableMap(DynamicTableMap):

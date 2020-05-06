@@ -19,7 +19,6 @@ def main():
     for type_name in ('LabMetaData', 'DynamicTableRegion', 'DynamicTable', 'VectorIndex'):
         ns_builder.include_type(type_name, namespace='core')
 
-
     ecephys_ext = NWBGroupSpec(
         doc='Group that holds proposed extracellular electrophysiology extensions.',
         neurodata_type_def='EcephysExt',
