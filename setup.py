@@ -13,10 +13,10 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup_args = {
     'name': 'ndx-bipolar-scheme',
-    'version': '0.2.0',
-    'description': 'An NWB:N extension for storing bipolar schema',
-    'author': 'Ben Dichter',
-    'author_email': 'ben.dichter@gmail.com',
+    'version': '0.3.0',
+    'description': 'An NWB extension for storing bipolar scheme',
+    'author': 'Ben Dichter, Armin Najarpour, Ryan Ly',
+    'author_email': 'ben.dichter@catalystneuro.com',
     'url': 'https://github.com/catalystneuro/ndx-bipolar-scheme',
     'license': 'BSD 3-Clause',
     'long_description': long_description,

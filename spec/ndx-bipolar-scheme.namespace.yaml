@@ -1,9 +1,11 @@
 namespaces:
 - author:
   - Ben Dichter
+  - Armin Najarpour
+  - Ryan Ly
   contact:
-  - ben.dichter@gmail.com
-  doc: An NWB:N extension for storing bipolar schema
+  - ben.dichter@catalystneuro.com
+  doc: An NWB extension for storing bipolar schema
   name: ndx-bipolar-scheme
   schema:
   - namespace: core
@@ -13,4 +15,4 @@ namespaces:
     - DynamicTable
     - VectorIndex
   - source: ndx-bipolar-scheme.extensions.yaml
-  version: 0.1.0
+  version: 0.3.0

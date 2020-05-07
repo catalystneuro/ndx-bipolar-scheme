@@ -11,9 +11,9 @@ def main():
     ns_builder = NWBNamespaceBuilder(
         doc='An NWB:N extension for storing bipolar schema',
         name='ndx-bipolar-scheme',
-        version='0.1.0',
-        author=list(map(str.strip, 'Ben Dichter'.split(','))),
-        contact=list(map(str.strip, 'ben.dichter@gmail.com'.split(',')))
+        version='0.3.0',
+        author=list(map(str.strip, 'Ben Dichter,Armin Najarpour,Ryan Ly'.split(','))),
+        contact=list(map(str.strip, 'ben.dichter@catalystneuro.com'.split(',')))
     )
 
     for type_name in ('LabMetaData', 'DynamicTableRegion', 'DynamicTable', 'VectorIndex'):
