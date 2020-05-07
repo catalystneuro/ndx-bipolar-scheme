@@ -2,7 +2,7 @@
 
 Structure for storing the bipolar schema of a recording in an NWB file.
 
-[![PyPI version](https://badge.fury.io/py/ndx-bipolar-referencing.svg)](https://badge.fury.io/py/ndx-bipolar-referencing)
+[![PyPI version](https://badge.fury.io/py/ndx-bipolar-scheme.svg)](https://badge.fury.io/py/ndx-bipolar-scheme)
 [![codecov](https://codecov.io/gh/catalystneuro/ndx-bipolar-scheme/branch/master/graph/badge.svg)](https://codecov.io/gh/catalystneuro/ndx-bipolar-scheme)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
