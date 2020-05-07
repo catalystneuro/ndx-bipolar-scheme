@@ -1,11 +1,14 @@
 import os
-from pynwb import load_namespaces, get_class
+
+from pynwb import load_namespaces
+
+name = 'ndx-bipolar-scheme'
 
 # Set path of the namespace.yaml file to the expected install location
 ndx_bipolar_scheme_specpath = os.path.join(
     os.path.dirname(__file__),
     'spec',
-    'ndx-bipolar-scheme.namespace.yaml'
+    name + '.namespace.yaml'
 )
 
 # If the extension has not been installed yet but we are running directly from
@@ -15,10 +18,10 @@ if not os.path.exists(ndx_bipolar_scheme_specpath):
         os.path.dirname(__file__),
         '..', '..', '..',
         'spec',
-        'ndx-bipolar-scheme.namespace.yaml'
+        name + '.namespace.yaml'
     ))
 
 # Load the namespace
 load_namespaces(ndx_bipolar_scheme_specpath)
 
-EcephysExt = get_class('EcephysExt', 'ndx-bipolar-scheme')
+from .bipolar_scheme import EcephysExt, BipolarSchemeTable
