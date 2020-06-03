@@ -1,19 +1,6 @@
-from pynwb import register_class
-from pynwb.file import LabMetaData, DynamicTable
+from pynwb import register_class, get_class
+from pynwb.file import DynamicTable
 from hdmf.utils import docval, call_docval_func, get_docval
-
-
-@register_class('EcephysExt', 'ndx-bipolar-scheme')
-class EcephysExt(LabMetaData):
-    """
-    Meta data for bipolar scheme
-    """
-    __nwbfields__ = ('name',
-                     {'name': 'bipolar_scheme_table', 'child': True})
-
-    @docval(dict(name='name', type=str, doc='name of this EcephysExt', default='EcephysExt'))  # required
-    def __init__(self, **kwargs):
-        call_docval_func(super().__init__, kwargs)
 
 
 @register_class('BipolarSchemeTable', 'ndx-bipolar-scheme')
@@ -36,3 +23,7 @@ class BipolarSchemeTable(DynamicTable):
             *get_docval(DynamicTable.__init__, 'id', 'columns', 'colnames'))
     def __init__(self, **kwargs):
         call_docval_func(super(BipolarSchemeTable, self).__init__, kwargs)
+
+
+EcephysExt = get_class('EcephysExt', 'ndx-bipolar-scheme')
+
