@@ -9,9 +9,9 @@ def main():
 
     # these arguments were auto-generated from your cookiecutter inputs
     ns_builder = NWBNamespaceBuilder(
-        doc='An NWB:N extension for storing bipolar schema',
+        doc='An NWB extension for storing bipolar schema',
         name='ndx-bipolar-scheme',
-        version='0.3.0',
+        version='0.3.1',
         author=list(map(str.strip, 'Ben Dichter,Armin Najarpour,Ryan Ly'.split(','))),
         contact=list(map(str.strip, 'ben.dichter@catalystneuro.com'.split(',')))
     )
