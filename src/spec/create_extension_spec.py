@@ -2,78 +2,83 @@
 
 import os.path
 
-from pynwb.spec import NWBNamespaceBuilder, export_spec, NWBGroupSpec
+from pynwb.spec import NWBNamespaceBuilder, export_spec, NWBGroupSpec, NWBLinkSpec, NWBDatasetSpec
 
 
 def main():
 
-    # these arguments were auto-generated from your cookiecutter inputs
+    # these arguments were auto-generated from your cookie-cutter inputs
     ns_builder = NWBNamespaceBuilder(
         doc='An NWB extension for storing bipolar schema',
         name='ndx-bipolar-scheme',
-        version='0.3.1',
+        version='0.4.0',
         author=list(map(str.strip, 'Ben Dichter,Armin Najarpour,Ryan Ly'.split(','))),
         contact=list(map(str.strip, 'ben.dichter@catalystneuro.com'.split(',')))
     )
 
-    for type_name in ('LabMetaData', 'DynamicTableRegion', 'DynamicTable', 'VectorIndex'):
+    for type_name in ('LabMetaData', 'DynamicTableRegion', 'DynamicTable', 'VectorIndex', 'ElectricalSeries'):
         ns_builder.include_type(type_name, namespace='core')
 
-    ecephys_ext = NWBGroupSpec(
+    ndx_bipolar_scheme = NWBGroupSpec(
         doc='Group that holds proposed extracellular electrophysiology extensions.',
-        neurodata_type_def='EcephysExt',
+        neurodata_type_def='NdxBipolarScheme',
         neurodata_type_inc='LabMetaData',
-        default_name='ecephys_ext',
+        name='ndx_bipolar_scheme',
         groups=[NWBGroupSpec(
-            name='bipolar_scheme_table',
             neurodata_type_inc='BipolarSchemeTable',
             doc='Bipolar referencing scheme used',
-            quantity='?'
+            quantity='*'
+        )],
+        links=[NWBLinkSpec(
+            name='source',
+            doc='input to re-referencing scheme',
+            target_type='ElectricalSeries',
+            quantity='?',
         )]
     )
 
-    bipolar_scheme = NWBGroupSpec(
+    bipolar_scheme_table = NWBGroupSpec(
+        default_name='bipolar_scheme',
         doc='Table that holds information about the bipolar scheme used',
         neurodata_type_def='BipolarSchemeTable',
         neurodata_type_inc='DynamicTable',
-        default_name='bipolar_scheme'
+        datasets=[
+            NWBDatasetSpec(
+                name='anodes',
+                neurodata_type_inc='DynamicTableRegion',
+                doc='references the electrodes table',
+                dims=('num_electrodes',),
+                shape=(None,),
+                dtype='int'
+            ),
+            NWBDatasetSpec(
+                name='cathodes',
+                neurodata_type_inc='DynamicTableRegion',
+                doc='references the electrodes table',
+                dims=('num_electrodes',),
+                shape=(None,),
+                dtype='int'
+            ),
+            NWBDatasetSpec(
+                name='anodes_index',
+                neurodata_type_inc='VectorIndex',
+                doc='Indices for the anode table',
+                dims=('num_electrode_grp',),
+                shape=(None,),
+                quantity='?',
+            ),
+            NWBDatasetSpec(
+                name='cathodes_index',
+                neurodata_type_inc='VectorIndex',
+                doc='Indices for the cathode table',
+                dims=('num_electrode_grp',),
+                shape=(None,),
+                quantity='?',
+            )
+        ]
     )
 
-    bipolar_scheme.add_dataset(
-        name='anodes',
-        neurodata_type_inc='DynamicTableRegion',
-        doc='references the electrodes table',
-        dims=('num_electrodes',),
-        shape=(None,),
-        dtype='int'
-    )
-
-    bipolar_scheme.add_dataset(
-        name='cathodes',
-        neurodata_type_inc='DynamicTableRegion',
-        doc='references the electrodes table',
-        dims=('num_electrodes',),
-        shape=(None,),
-        dtype='int'
-    )
-
-    bipolar_scheme.add_dataset(
-        name='anodes_index',
-        neurodata_type_inc='VectorIndex',
-        doc='Indices for the anode table',
-        dims=('num_electrode_grp',),
-        shape=(None,)
-    )
-
-    bipolar_scheme.add_dataset(
-        name='cathodes_index',
-        neurodata_type_inc='VectorIndex',
-        doc='Indices for the cathode table',
-        dims=('num_electrode_grp',),
-        shape=(None,)
-    )
-
-    new_data_types = [ecephys_ext, bipolar_scheme]
+    new_data_types = [ndx_bipolar_scheme, bipolar_scheme_table]
 
     # export the spec to yaml files in the spec folder
     output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'spec'))

@@ -1,12 +1,16 @@
 groups:
-- neurodata_type_def: EcephysExt
+- neurodata_type_def: NdxBipolarScheme
   neurodata_type_inc: LabMetaData
-  default_name: ecephys_ext
+  name: ndx_bipolar_scheme
   doc: Group that holds proposed extracellular electrophysiology extensions.
   groups:
-  - name: bipolar_scheme_table
-    neurodata_type_inc: BipolarSchemeTable
+  - neurodata_type_inc: BipolarSchemeTable
     doc: Bipolar referencing scheme used
+    quantity: '*'
+  links:
+  - name: source
+    target_type: ElectricalSeries
+    doc: input to re-referencing scheme
     quantity: '?'
 - neurodata_type_def: BipolarSchemeTable
   neurodata_type_inc: DynamicTable
@@ -36,6 +40,7 @@ groups:
     shape:
     - null
     doc: Indices for the anode table
+    quantity: '?'
   - name: cathodes_index
     neurodata_type_inc: VectorIndex
     dims:
@@ -43,3 +48,4 @@ groups:
     shape:
     - null
     doc: Indices for the cathode table
+    quantity: '?'
