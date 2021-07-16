@@ -71,3 +71,69 @@ with NWBHDF5IO('test_nwb.nwb', 'r', load_namespaces=True) as io:
     nwbfile = io.read()
     print(nwbfile.acquisition['test_ec_series'].electrodes.table['anodes'][2]['x'])
 ```
+
+## MATLAB usage
+
+```matlab
+nwb = NwbFile( ...
+    'session_description', 'mouse in open exploration',...
+    'identifier', 'Mouse5_Day3', ...
+    'session_start_time', datetime(2018, 4, 25, 2, 30, 3), ...
+    'general_experimenter', 'My Name', ... % optional
+    'general_session_id', 'session_1234', ... % optional
+    'general_institution', 'University of My Institution', ... % optional
+    'general_related_publications', 'DOI:10.1016/j.neuron.2016.12.011'); % optional
+
+nshanks = 4;
+nchannels_per_shank = 3;
+variables = {'x', 'y', 'z', 'imp', 'location', 'filtering', 'group', 'label'};
+tbl = cell2table(cell(0, length(variables)), 'VariableNames', variables);
+device = types.core.Device(...
+    'description', 'the best array', ...
+    'manufacturer', 'Probe Company 9000');
+device_name = 'array';
+nwb.general_devices.set(device_name, device);
+device_link = types.untyped.SoftLink(['/general/devices/' device_name]);
+for ishank = 1:nshanks
+    group_name = ['shank' num2str(ishank)];
+    nwb.general_extracellular_ephys.set(group_name, ...
+        types.core.ElectrodeGroup( ...
+            'description', ['electrode group for shank' num2str(ishank)], ...
+   	        'location', 'brain area', ...
+   	        'device', device_link));
+    group_object_view = types.untyped.ObjectView( ...
+       	['/general/extracellular_ephys/' group_name]);
+    for ielec = 1:nchannels_per_shank
+        tbl = [tbl; {5.3, 1.5, 8.5, NaN, 'unknown', 'unknown', ...
+            group_object_view, [group_name 'elec' num2str(ielec)]}];
+    end
+end
+
+
+electrode_table = util.table2nwb(tbl, 'all electrodes');
+nwb.general_extracellular_ephys_electrodes = electrode_table;
+electrodes_object_view = types.untyped.ObjectView( ...
+    '/general/extracellular_ephys/electrodes');
+
+anodes_data = {0, [0, 1], [0, 1]};
+cathodes_data = {1, [2, 3], 2};
+
+[anodes, anodes_index] = util.create_indexed_column(anodes_data, ...
+    '/general/ndx_bipolar_scheme/bipolar_scheme_table', [], [], electrodes_object_view);
+
+[cathodes, cathodes_index] = util.create_indexed_column(cathodes_data, ...
+    '/general/ndx_bipolar_scheme/bipolar_scheme_table', [], [], electrodes_object_view);
+
+bipolar_scheme_table = types.ndx_bipolar_scheme.BipolarSchemeTable( ...
+    'id', types.hdmf_common.ElementIdentifiers('data', 0:2), ...
+    'description', 'my description', ...
+    'colnames', {'anodes', 'cathods'}, ...
+    'anodes', anodes, 'anodes_index', anodes_index, ...
+    'cathodes', cathodes, 'cathodes_index', cathodes_index);
+
+ecephys_ext = types.ndx_bipolar_scheme.EcephysExt('bipolar_scheme_table', bipolar_scheme_table);
+
+nwb.general.set('ndx_bipolar_scheme', ecephys_ext);
+
+nwbExport(nwb, 'test.nwb');
+```
